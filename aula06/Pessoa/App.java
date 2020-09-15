@@ -10,6 +10,6 @@ public class App {
         System.out.println(p1.dados());
         System.out.println(p2.dados());
         System.out.println(p3.dados(','));
+
     }
-    
 }

@@ -5,18 +5,28 @@ public class Pessoa {
     private int idade;
 
     public Pessoa(){
-        nome= "Não cadastrado";
-        idade = 0;
+        nome="Não cadastrado";
+        //idade = 0; já é o padrão
     }
 
     public Pessoa(String nome){
         this.nome = nome;
         this.idade = 18;
-
     }
 
-	public char[] dados() {
-		return null;
-	}
+    //Overload do construtor
+    public Pessoa(String nome, int idade){
+        this.nome = nome;
+        this.idade = idade;
+    }
+
     
+    public String dados(char separador){
+        return nome + separador + idade;
+    }
+    
+    //overload do método dados
+    public String dados(){
+        return dados(':');
+    }
 }
