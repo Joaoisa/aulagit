@@ -1,7 +1,6 @@
 package Exercicio4;
 
     
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TesteApp {
@@ -9,14 +8,14 @@ public class TesteApp {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int opcao;
-        
-        ArrayList<Conta> listaDeContas = new ArrayList<>();
 
-        ContaCorrente cc;// = null;
-        ContaEspecial ce;
+        GerenciaContas contas = new GerenciaContas();
+
+        ContaPoupanca.setTaxa(0.1); // ajusta a taxa de operação da poupança
 
         int numeroConta;
         double limite;
+        double valor;
 
         do {
             System.out.println("1-Nova Conta Corrente");
@@ -34,8 +33,7 @@ public class TesteApp {
                     System.out.println("Criando uma conta corrente.");
                     System.out.println("Informe o número da conta:");
                     numeroConta = teclado.nextInt();
-                    cc = new ContaCorrente(numeroConta);
-                    listaDeContas.add(cc);
+                    contas.novaContaCorrente(numeroConta);
                     break;
                 case 2:
                     System.out.println("Criando uma conta especial.");
@@ -43,19 +41,42 @@ public class TesteApp {
                     numeroConta = teclado.nextInt();
                     System.out.println("Informe o limite:");
                     limite = teclado.nextDouble();
-                    ce = new ContaEspecial(numeroConta, limite);
-                    listaDeContas.add(ce);
+                    contas.novaContaEspecial(numeroConta, limite);
                     break;
                 case 3:
+                    System.out.println("Criando uma conta corrente.");
+                    System.out.println("Informe o número da conta:");
+                    numeroConta = teclado.nextInt();
+                    contas.novaContaPoupanca(numeroConta);
                     break;
                 case 4:
+                    System.out.println("Informe o número da conta:");
+                    numeroConta = teclado.nextInt();
+                    System.out.println("informe o valor do depósito:");
+                    valor = teclado.nextDouble();
+
+                    if(contas.depositar(numeroConta, valor)){
+                        System.out.println("Deposito realizado");
+                    }else{
+                        System.out.println("Falha na operação");
+                    }
+
                     break;
                 case 5:
+                    System.out.println("Informe o número da conta:");
+                    numeroConta = teclado.nextInt();
+                    System.out.println("informe o valor do saque:");
+                    valor = teclado.nextDouble();
+
+                    if(contas.sacar(numeroConta, valor)){
+                        System.out.println("Saque realizado");
+                    }else{
+                        System.out.println("Falha na operação");
+                    }
+
                     break;
                 case 6:
-                    for(int i =0; i < listaDeContas.size(); i++){
-                        System.out.println(listaDeContas.get(i).exibir());
-                    }
+                    System.out.println(contas.listarContas());
                     break;
                 case 7:
                     break;
